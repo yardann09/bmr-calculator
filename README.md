@@ -4,7 +4,7 @@
 | No | Nama | NIM |
 |----|------|-----|
 | 1 | Yardan Raditya Laksana | K3524017 |
-| 2 | Galang Nur Seto |  |
+| 2 | Galang Nur Seto | K3524053 |
 
 
 ## Deskripsi
