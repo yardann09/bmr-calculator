@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- Pengaturan dasar halaman: encoding karakter & tampilan responsif di HP -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator BMR</title>
+  <!-- Menghubungkan file CSS untuk tampilan -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Kalkulator BMR</h1>
+    <p class="subtitle">
+      Basal Metabolic Rate (BMR) adalah jumlah kalori yang dibutuhkan tubuh
+      saat istirahat total untuk menjalankan fungsi dasar (bernapas, sirkulasi darah, dll).
+    </p>
+
+    <!-- Form input data pengguna. Program dimulai saat form ini di-submit -->
+    <form id="bmrForm">
+      <!-- Input umur (BMR dihitung untuk usia 15-80 tahun, sama seperti referensi) -->
+      <label for="umur">Umur (tahun)</label>
+      <input type="number" id="umur" min="15" max="80" placeholder="contoh: 20" required>
+
+      <!-- Pilihan jenis kelamin, karena rumus pria & wanita berbeda -->
+      <label>Jenis Kelamin</label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="pria" checked> Pria</label>
+        <label><input type="radio" name="gender" value="wanita"> Wanita</label>
+      </div>
+
+      <!-- Input tinggi badan dalam cm -->
+      <label for="tinggi">Tinggi Badan (cm)</label>
+      <input type="number" id="tinggi" min="50" max="250" step="0.1" placeholder="contoh: 170" required>
+
+      <!-- Input berat badan dalam kg -->
+      <label for="berat">Berat Badan (kg)</label>
+      <input type="number" id="berat" min="10" max="300" step="0.1" placeholder="contoh: 65" required>
+
+      <!-- Pilihan rumus BMR -->
+      <label for="rumus">Rumus Perhitungan</label>
+      <select id="rumus">
+        <option value="mifflin">Mifflin-St Jeor</option>
+        <option value="harris">Revised Harris-Benedict</option>
+        <option value="katch">Katch-McArdle (butuh % lemak tubuh)</option>
+      </select>
+
+      <!-- Input persentase lemak tubuh, hanya muncul jika rumus Katch-McArdle dipilih -->
+      <div id="lemakGroup" class="hidden">
+        <label for="lemak">Persentase Lemak Tubuh (%)</label>
+        <input type="number" id="lemak" min="1" max="70" step="0.1" placeholder="contoh: 20">
+      </div>
+
+      <!-- Tombol aksi -->
+      <div class="buttons">
+        <button type="submit">Hitung</button>
+        <button type="reset" id="btnReset" class="secondary">Reset</button>
+      </div>
+    </form>
+
+    <!-- Area hasil. Disembunyikan dulu, ditampilkan oleh JavaScript setelah perhitungan -->
+    <section id="hasil" class="hidden">
+      <h2>Hasil</h2>
+      <p class="bmr-value">BMR = <span id="bmrAngka">0</span> kalori/hari</p>
+
+      <!-- Tabel kebutuhan kalori harian berdasarkan tingkat aktivitas -->
+      <table>
+        <thead>
+          <tr><th>Tingkat Aktivitas</th><th>Kalori/hari</th></tr>
+        </thead>
+        <tbody id="tabelAktivitas"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Menghubungkan file JavaScript yang berisi logika program -->
+  <script src="script.js"></script>
+</body>
+</html>
